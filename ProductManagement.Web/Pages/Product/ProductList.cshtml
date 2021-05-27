@@ -1,0 +1,27 @@
+﻿@model ProductManagement.Application.ViewModels.ProductViewModel
+
+<h1>List</h1>
+
+<h4>Product</h4>
+<hr />
+<table id="book" class="table table-bordered table-hover">
+    <thead>
+        <tr class="">
+            <th>Name</th>
+            <th>UnitPrice</th>
+            <th>ReOrderLevel</th>
+            <th>NumberOfUnitsAvailable</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr style="height: 60px;">
+                <td>@product.Name</td>
+                <td>@product.UnitPrice</td>
+                <td>@product.ReOrderLevel</td>
+                <td>@product.NumberOfUnitsAvailable</td>
+            </tr>
+        }
+    </tbody>
+</table>

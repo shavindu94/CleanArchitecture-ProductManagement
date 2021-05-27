@@ -91,3 +91,5 @@ E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManag
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\ProductManagement.IoC.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\ProductManagement.IoC.pdb
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\ProductManagement.Application.pdb
+E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\Razor\Pages\Product\CreateProduct.cshtml.g.cs
+E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\Razor\Pages\Product\ProductList.cshtml.g.cs

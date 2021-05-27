@@ -3,6 +3,7 @@ using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.Services;
 using ProductManagement.Domain.Interfaces;
 using ProductManagement.Infrastructure.Repositories;
+using ProductManagement.Infrastructure.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace ProductManagement.IoC
             services.AddTransient<IProductService, ProductService>();
 
             services.AddTransient<IProductRepository, ProductRepository>();
+
+            services.AddTransient<IUnitOfWork,UnitOfWork>();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace ProductManagement.Application.Interfaces
     public interface IProductService
     {
         ProductViewModel GetProducts();
+
+        void CreateProduct(CreateProductViewModel createProductViewModel);
     }
 }
