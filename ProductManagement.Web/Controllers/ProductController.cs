@@ -32,6 +32,7 @@ namespace ProductManagement.Web.Controllers
             }
 
             _productService.CreateProduct(createProductViewModel);
+            ModelState.Clear();
             TempData["Success"] = "Added Successfully!";
             return View("../Product/CreateProduct", new CreateProductViewModel());
         }
@@ -77,11 +78,13 @@ namespace ProductManagement.Web.Controllers
 
             var paginationObj = _productService.GetProducts(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
 
+
             this.ViewBag.MaxPage = paginationObj.NumberOfpages;
 
             this.ViewBag.Page = page;
 
             this.ViewBag.SearchString = searchString;
+            ModelState.Clear();
 
             return View("../Product/ProductList", paginationObj.Data);
         }
