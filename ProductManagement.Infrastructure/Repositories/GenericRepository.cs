@@ -51,5 +51,13 @@ namespace ProductManagement.Infrastructure.Repositories
         {
             _context.Set<T>().RemoveRange(entities);
         }
+
+        public int GetCount()
+        {
+            return _context.Set<T>().Count();
+        }
+
+
+
     }
 }

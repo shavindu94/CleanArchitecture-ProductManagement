@@ -1,4 +1,5 @@
-﻿using ProductManagement.Application.ViewModels;
+﻿using ProductManagement.Application.Common;
+using ProductManagement.Application.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,7 @@ namespace ProductManagement.Application.Interfaces
         void UpdateProduct(EditProductViewModel editProductViewModel);
 
         void Delete(Guid id);
+
+        Pagination GetProducts(Pagination paginationIn);
     }
 }

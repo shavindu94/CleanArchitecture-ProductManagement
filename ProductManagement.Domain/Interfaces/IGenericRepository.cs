@@ -16,5 +16,7 @@ namespace ProductManagement.Domain.Interfaces
         void AddRange(IEnumerable<T> entities);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
+
+        int GetCount();
     }
 }

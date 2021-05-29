@@ -1,4 +1,5 @@
-﻿using ProductManagement.Application.Interfaces;
+﻿using ProductManagement.Application.Common;
+using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
 using ProductManagement.Domain.Interfaces;
 using ProductManagement.Domain.Models;
@@ -26,6 +27,20 @@ namespace ProductManagement.Application.Services
             };
         }
 
+        public Pagination GetProducts(Pagination paginationIn)
+        {
+           var list =_unitOfWork.Products.GetFiletedList(paginationIn.SearchString, paginationIn.PageNumber, paginationIn.PageSize);
+
+            Pagination pagination = new Pagination()
+            {
+                PageNumber = paginationIn.PageNumber,
+                PageSize = paginationIn.PageSize,
+                TotalNumber = _unitOfWork.Products.GetCount(),
+                Data = (list != null && list.Count != 0 ? new ProductViewModel() { Products = list } : null)
+            };
+            return pagination;
+        }
+
         public void CreateProduct(CreateProductViewModel createProductViewModel)
         {
             Product product = new Product()
@@ -50,8 +65,7 @@ namespace ProductManagement.Application.Services
             if(product != null && product.Id !=Guid.Empty)
             {
                 return new EditProductViewModel()
-                {   
-                    Id = product.Id,
+                {   Id = product.Id,
                     Name = product.Name,
                     UnitPrice = product.UnitPrice,
                     ReOrderLevel = product.ReOrderLevel,

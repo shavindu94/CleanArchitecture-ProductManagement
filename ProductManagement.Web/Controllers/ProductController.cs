@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProductManagement.Application.Common;
 using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
 using System;
@@ -18,6 +19,7 @@ namespace ProductManagement.Web.Controllers
         public IActionResult Index()
         {
             ProductViewModel model = _productService.GetProducts();
+
             return View(model);
         }
 
@@ -39,7 +41,7 @@ namespace ProductManagement.Web.Controllers
         {
             EditProductViewModel editProductViewModel = _productService.GetById(id);
 
-            if(editProductViewModel != null && editProductViewModel.Id != Guid.Empty) 
+            if (editProductViewModel != null && editProductViewModel.Id != Guid.Empty)
             {
 
                 return View("../Product/Edit", editProductViewModel);
@@ -49,7 +51,7 @@ namespace ProductManagement.Web.Controllers
 
         }
 
-        public IActionResult EditSubmit (EditProductViewModel editProductViewModel)
+        public IActionResult EditSubmit(EditProductViewModel editProductViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -70,12 +72,21 @@ namespace ProductManagement.Web.Controllers
         }
 
 
-        public IActionResult ProductList()
+        public IActionResult ProductList(int page = 1, string searchString= "")
         {
-            return View("../Product/ProductList", _productService.GetProducts());
+
+            var paginationObj = _productService.GetProducts(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
+
+            this.ViewBag.MaxPage = paginationObj.NumberOfpages;
+
+            this.ViewBag.Page = page;
+
+            this.ViewBag.SearchString = searchString;
+
+            return View("../Product/ProductList", paginationObj.Data);
         }
 
-        public IActionResult CreateProduct()
+        public IActionResult Create()
         {
             return View("../Product/CreateProduct", new CreateProductViewModel());
         }
