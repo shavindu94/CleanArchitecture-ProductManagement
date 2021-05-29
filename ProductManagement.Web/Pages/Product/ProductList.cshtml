@@ -4,9 +4,20 @@
 
 <h4>Product</h4>
 <hr />
-
+@if (TempData["Success"] != null)
+{
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
+@if (TempData["Warning"] != null)
+{
+    <p class="alert alert-warning" id="successMessage">@TempData["Warning"]</p>
+}
+@if (TempData["Error"] != null)
+{
+    <p class="alert alert-danger" id="successMessage">@TempData["Error"]</p>
+}
 <div class="input-group mb-3">
-    <input type="text" class="form-control" id="txtSearch" placeholder="Search by name" aria-label="Search" value="@ViewBag.SearchString"aria-describedby="button-addon2">
+    <input type="text" class="form-control" id="txtSearch" placeholder="Search by name" aria-label="Search" value="@ViewBag.SearchString" aria-describedby="button-addon2">
     <button class="btn btn-outline-secondary" Onclick="Search()" type="button" id="button-addon2">Serach</button>
 </div>
 <table id="book" class="table table-bordered table-hover">

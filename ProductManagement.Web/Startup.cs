@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using ProductManagement.Infrastructure.Data;
 using ProductManagement.Infrastructure.Identity.Data;
 using ProductManagement.IoC;
@@ -49,7 +50,7 @@ namespace ProductManagement.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env  ,ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -65,7 +66,7 @@ namespace ProductManagement.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            loggerFactory.AddFile("Logs/ProductManagement-{Date}.txt");
             app.UseRouting();
 
             app.UseAuthentication();

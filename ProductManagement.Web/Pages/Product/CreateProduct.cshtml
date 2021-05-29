@@ -5,45 +5,54 @@
 <h4>Product</h4>
 @if (TempData["Success"] != null)
 {
- <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+}
+@if (TempData["Warning"] != null)
+{
+    <p class="alert alert-warning" id="successMessage">@TempData["Warning"]</p>
+}
+@if (TempData["Error"] != null)
+{
+    <p class="alert alert-danger" id="successMessage">@TempData["Error"]</p>
 }
 <hr />
-@if(Model != null){
-<div class="row">
-    <div class="col-md-4">
-        <form action="/Product/CreateSubmit" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label">Name</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NumberOfUnitsAvailable" class="control-label">Number Of Units Available</label>
-                <input asp-for="NumberOfUnitsAvailable " class="form-control" />
-                <span asp-validation-for="NumberOfUnitsAvailable " class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReOrderLevel" class="control-label">ReOrder Level</label>
-                <input asp-for="ReOrderLevel" class="form-control" />
-                <span asp-validation-for="ReOrderLevel " class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UnitPrice" class="control-label">Unit Price</label>
-                <input asp-for="UnitPrice" class="form-control" />
-                <span asp-validation-for="UnitPrice " class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form action="/Product/CreateSubmit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="NumberOfUnitsAvailable" class="control-label">Number Of Units Available</label>
+                    <input asp-for="NumberOfUnitsAvailable " class="form-control" />
+                    <span asp-validation-for="NumberOfUnitsAvailable " class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ReOrderLevel" class="control-label">ReOrder Level</label>
+                    <input asp-for="ReOrderLevel" class="form-control" />
+                    <span asp-validation-for="ReOrderLevel " class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UnitPrice" class="control-label">Unit Price</label>
+                    <input asp-for="UnitPrice" class="form-control" />
+                    <span asp-validation-for="UnitPrice " class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 }
 <div>
     @*<a asp-page="Index">Back to List</a>*@
 </div>
 
 @*@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}*@
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }*@

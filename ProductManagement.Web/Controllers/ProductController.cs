@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ProductManagement.Application.Common;
 using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
@@ -12,9 +13,11 @@ namespace ProductManagement.Web.Controllers
     public class ProductController : Controller
     {
         private IProductService _productService;
-        public ProductController(IProductService productService)
+        readonly ILogger<ProductController> _log;
+        public ProductController(IProductService productService , ILogger<ProductController> log)
         {
             _productService = productService;
+            _log = log;
         }
         public IActionResult Index()
         {
@@ -26,15 +29,27 @@ namespace ProductManagement.Web.Controllers
         [HttpPost]
         public ViewResult CreateSubmit(CreateProductViewModel createProductViewModel)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("../Product/CreateProduct", createProductViewModel);
+                }
+
+                _productService.CreateProduct(createProductViewModel);
+                TempData["Success"] = "Added Successfully!";
+                _log.LogTrace(DateTime.Now + "| Product " + createProductViewModel.Name + "created successfully");
+                ModelState.Clear();
+                return View("../Product/CreateProduct", new CreateProductViewModel());
+            }
+            catch (Exception ex)
+            {
+                string message = "Product Creation failed";
+                _log.LogError(message +":" + ex.ToString());
+                TempData["Error"] = message;
                 return View("../Product/CreateProduct", createProductViewModel);
             }
-
-            _productService.CreateProduct(createProductViewModel);
-            ModelState.Clear();
-            TempData["Success"] = "Added Successfully!";
-            return View("../Product/CreateProduct", new CreateProductViewModel());
+          
         }
 
 
@@ -54,44 +69,80 @@ namespace ProductManagement.Web.Controllers
 
         public IActionResult EditSubmit(EditProductViewModel editProductViewModel)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View("../Product/Edit", editProductViewModel);
+                }
+
+                _productService.UpdateProduct(editProductViewModel);
+                TempData["Success"] = "Updated Successfully!";
+                _log.LogTrace(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
+                return View("../Product/CreateProduct", new EditProductViewModel());
+            }
+            catch (Exception ex)
+            {
+                string message = "Product update failed";
+                _log.LogError(message + ":" + ex.ToString());
+                TempData["Error"] = message;
                 return View("../Product/Edit", editProductViewModel);
             }
-
-            _productService.UpdateProduct(editProductViewModel);
-            TempData["Success"] = "Updated Successfully!";
-            return View("../Product/CreateProduct", new CreateProductViewModel());
 
         }
 
         public IActionResult Delete(Guid id)
         {
-            _productService.Delete(id);
-
-            return View("../Product/ProductList", _productService.GetProducts());
+            try
+            {
+                _productService.Delete(id);
+                ProductViewModel productViewModel = GetProductPaginatedList();
+                TempData["Success"] = "Product deleted successfully!";
+               _log.LogTrace(DateTime.Now + "| Product id " + id  + "deleted successfully");
+                return View("../Product/ProductList", productViewModel);
+            }
+            catch (Exception ex)
+            {
+                string message = "Product delete failed";
+                _log.LogError(message + ":" + ex.ToString());
+                TempData["Error"] = message;
+                return View("../Product/Edit", new ProductViewModel());
+            }
+           
         }
 
 
         public IActionResult ProductList(int page = 1, string searchString= "")
         {
-
-            var paginationObj = _productService.GetProducts(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
-
-
-            this.ViewBag.MaxPage = paginationObj.NumberOfpages;
-
-            this.ViewBag.Page = page;
-
-            this.ViewBag.SearchString = searchString;
-            ModelState.Clear();
-
-            return View("../Product/ProductList", paginationObj.Data);
+            try
+            {
+                ProductViewModel productViewModel = GetProductPaginatedList(page, searchString);
+                return View("../Product/ProductList", productViewModel);
+            }
+            catch (Exception ex)
+            {
+                string message = "Product list load failed";
+                _log.LogError(message + ":" + ex.ToString());
+                TempData["Error"] = message;
+                return View("../Product/Edit", new ProductViewModel());
+            }
+            
         }
 
         public IActionResult Create()
         {
             return View("../Product/CreateProduct", new CreateProductViewModel());
+        }
+
+        private ProductViewModel GetProductPaginatedList(int page = 1, string searchString = "")
+        {
+            var paginationObj = _productService.GetProducts(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
+
+            this.ViewBag.MaxPage = paginationObj.NumberOfpages;
+            this.ViewBag.Page = page;
+            this.ViewBag.SearchString = searchString;
+            ModelState.Clear();
+            return (ProductViewModel) paginationObj.Data;
         }
     }
 }
