@@ -11,17 +11,21 @@
             <th>UnitPrice</th>
             <th>ReOrderLevel</th>
             <th>NumberOfUnitsAvailable</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var product in Model.Products)
         {
-            <tr style="height: 60px;">
-                <td>@product.Name</td>
-                <td>@product.UnitPrice</td>
-                <td>@product.ReOrderLevel</td>
-                <td>@product.NumberOfUnitsAvailable</td>
-            </tr>
+        <tr style="height: 60px;">
+            <td>@product.Name</td>
+            <td>@product.UnitPrice</td>
+            <td>@product.ReOrderLevel</td>
+            <td>@product.NumberOfUnitsAvailable</td>
+            <td><a class="btn btn-primary" asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-area="" asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id">Delete</a></td>
+        </tr>
         }
     </tbody>
 </table>

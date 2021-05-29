@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Application", "ProductManagement.Application\ProductManagement.Application.csproj", "{1C0D7B96-290F-41C1-A82A-8EEC9E3D1ED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Application", "ProductManagement.Application\ProductManagement.Application.csproj", "{1C0D7B96-290F-41C1-A82A-8EEC9E3D1ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Domain", "ProductManagement.Domain\ProductManagement.Domain.csproj", "{56610F7C-C238-426F-886A-B8F6A005EF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Domain", "ProductManagement.Domain\ProductManagement.Domain.csproj", "{56610F7C-C238-426F-886A-B8F6A005EF72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Infrastructure", "ProductManagement.Infrastructure\ProductManagement.Infrastructure.csproj", "{6CA3D2E2-33BE-43CB-B6B9-E3C40D39B277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Infrastructure", "ProductManagement.Infrastructure\ProductManagement.Infrastructure.csproj", "{6CA3D2E2-33BE-43CB-B6B9-E3C40D39B277}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.IoC", "ProductManagement.IoC\ProductManagement.IoC.csproj", "{F09054DE-DD35-464D-9F67-68FB32D369BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.IoC", "ProductManagement.IoC\ProductManagement.IoC.csproj", "{F09054DE-DD35-464D-9F67-68FB32D369BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.Web", "ProductManagement.Web\ProductManagement.Web.csproj", "{F1F964AD-77D1-4E7B-8595-C726E87E4174}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.Web", "ProductManagement.Web\ProductManagement.Web.csproj", "{F1F964AD-77D1-4E7B-8595-C726E87E4174}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

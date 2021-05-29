@@ -34,6 +34,42 @@ namespace ProductManagement.Web.Controllers
             return View("../Product/CreateProduct", new CreateProductViewModel());
         }
 
+
+        public IActionResult Edit(Guid id)
+        {
+            EditProductViewModel editProductViewModel = _productService.GetById(id);
+
+            if(editProductViewModel != null && editProductViewModel.Id != Guid.Empty) 
+            {
+
+                return View("../Product/Edit", editProductViewModel);
+            }
+
+            return View("../Product/ProductList", _productService.GetProducts());
+
+        }
+
+        public IActionResult EditSubmit (EditProductViewModel editProductViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("../Product/Edit", editProductViewModel);
+            }
+
+            _productService.UpdateProduct(editProductViewModel);
+            TempData["Success"] = "Updated Successfully!";
+            return View("../Product/CreateProduct", new CreateProductViewModel());
+
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            _productService.Delete(id);
+
+            return View("../Product/ProductList", _productService.GetProducts());
+        }
+
+
         public IActionResult ProductList()
         {
             return View("../Product/ProductList", _productService.GetProducts());

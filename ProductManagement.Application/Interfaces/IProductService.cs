@@ -12,5 +12,10 @@ namespace ProductManagement.Application.Interfaces
         ProductViewModel GetProducts();
 
         void CreateProduct(CreateProductViewModel createProductViewModel);
+        EditProductViewModel GetById(Guid id);
+
+        void UpdateProduct(EditProductViewModel editProductViewModel);
+
+        void Delete(Guid id);
     }
 }

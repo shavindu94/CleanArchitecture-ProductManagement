@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.Application.ViewModels
 {
-    public class CreateProductViewModel
+    public class EditProductViewModel
     {
+
+        public Guid Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -23,6 +26,5 @@ namespace ProductManagement.Application.ViewModels
 
 
         public string CraeatedBy { get; set; }
-
     }
 }
