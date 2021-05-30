@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +15,7 @@ using ProductManagement.IoC;
 using ProductManagement.Web.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -50,6 +52,17 @@ namespace ProductManagement.Web
             services.AddScoped<IUserService, UserService>();
 
             RegisterServices(services);
+
+
+            /// SSO
+            services.AddDataProtection()
+                .PersistKeysToFileSystem(new DirectoryInfo("C"))
+                .SetApplicationName("ProductMangement")
+                .SetDefaultKeyLifetime(TimeSpan.FromDays(10));
+
+            services.ConfigureApplicationCookie(options => {
+                options.Cookie.Name = ".AspNet.SharedCookie";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
