@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using ProductManagement.Application.Common;
 using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
+using ProductManagement.Web.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace ProductManagement.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private IProductService _productService;
-        readonly ILogger<ProductController> _log;
-        public ProductController(IProductService productService , ILogger<ProductController> log)
+        private readonly IProductService _productService;
+        private readonly ILogger<ProductController> _log;
+        private readonly IUserService _userService;
+        public ProductController(IProductService productService , ILogger<ProductController> log, IUserService userService)
         {
             _productService = productService;
             _log = log;
+            _userService = userService;
         }
         public IActionResult Index()
         {
@@ -36,6 +39,7 @@ namespace ProductManagement.Web.Controllers
                     return View("../Product/CreateProduct", createProductViewModel);
                 }
 
+                createProductViewModel.CraeatedBy= _userService.GetLoggedUserId();
                 _productService.CreateProduct(createProductViewModel);
                 TempData["Success"] = "Added Successfully!";
                 _log.LogTrace(DateTime.Now + "| Product " + createProductViewModel.Name + "created successfully");
@@ -76,6 +80,7 @@ namespace ProductManagement.Web.Controllers
                     return View("../Product/Edit", editProductViewModel);
                 }
 
+                editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
                 _productService.UpdateProduct(editProductViewModel);
                 TempData["Success"] = "Updated Successfully!";
                 _log.LogTrace(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using ProductManagement.Infrastructure.Data;
 using ProductManagement.Infrastructure.Identity.Data;
 using ProductManagement.IoC;
+using ProductManagement.Web.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,8 @@ namespace ProductManagement.Web
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+
+            services.AddScoped<IUserService, UserService>();
 
             RegisterServices(services);
         }

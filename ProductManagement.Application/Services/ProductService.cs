@@ -49,7 +49,7 @@ namespace ProductManagement.Application.Services
                 UnitPrice = createProductViewModel.UnitPrice,
                 ReOrderLevel = createProductViewModel.ReOrderLevel,
                 NumberOfUnitsAvailable = createProductViewModel.NumberOfUnitsAvailable,
-                CreatedUserId = "Admin",
+                CreatedUserId = createProductViewModel.CraeatedBy,
                 CreatedDate =DateTime.Now
             };
 
@@ -85,7 +85,7 @@ namespace ProductManagement.Application.Services
             product.UnitPrice = editProductViewModel.UnitPrice;
             product.ReOrderLevel = editProductViewModel.ReOrderLevel;
             product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
-            product.ModifiedUserId = "Admin";
+            product.ModifiedUserId = editProductViewModel.CraeatedBy;
             product.ModifiedDate = DateTime.Now;
             
             _unitOfWork.Complete();

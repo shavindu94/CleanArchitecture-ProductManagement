@@ -1,0 +1,8 @@
+2021-05-30T14:58:40.2250799+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-30T14:58:40.2349356+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-30T14:58:40.2371710+05:30  [INF] Content root path: "E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web" (b5d60022)
+2021-05-30T14:59:08.6664146+05:30 800000c8-0002-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"UnitPrice"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
+2021-05-30T15:02:03.3626055+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-05-30T15:02:03.3711819+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2021-05-30T15:02:03.3729723+05:30  [INF] Content root path: "E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web" (b5d60022)
+2021-05-30T15:02:22.1835430+05:30 800000ca-0002-fc00-b63f-84710c7967bb [WRN] No type was specified for the decimal property '"UnitPrice"' on entity type '"Product"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType()', specify precision and scale using 'HasPrecision()' or configure a value converter using 'HasConversion()'. (5c92c1c4)
