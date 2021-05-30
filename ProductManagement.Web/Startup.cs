@@ -82,7 +82,7 @@ namespace ProductManagement.Web
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            loggerFactory.AddFile("Logs/ProductManagement-{Date}.txt");
+            //loggerFactory.AddFile("Logs/ProductManagement-{Date}.txt");
             app.UseRouting();
 
             app.UseAuthentication();
