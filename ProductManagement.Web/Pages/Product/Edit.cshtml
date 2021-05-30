@@ -1,12 +1,8 @@
 ﻿@model ProductManagement.Application.ViewModels.EditProductViewModel
 
-<h1>Edit</h1>
+<h1>Edit Product</h1>
 
-<h4>Product</h4>
-@if (TempData["Success"] != null)
-{
-    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
-}
+<partial name="../Shared/_MessageView" />
 <hr />
 @if (Model != null)
 {

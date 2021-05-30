@@ -1,20 +1,8 @@
 ﻿@model ProductManagement.Application.ViewModels.CreateProductViewModel
 
-<h1>Create</h1>
+<h1>Create Product</h1>
 
-<h4>Product</h4>
-@if (TempData["Success"] != null)
-{
-    <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
-}
-@if (TempData["Warning"] != null)
-{
-    <p class="alert alert-warning" id="successMessage">@TempData["Warning"]</p>
-}
-@if (TempData["Error"] != null)
-{
-    <p class="alert alert-danger" id="successMessage">@TempData["Error"]</p>
-}
+<partial name="../Shared/_MessageView"/>
 <hr />
 @if (Model != null)
 {

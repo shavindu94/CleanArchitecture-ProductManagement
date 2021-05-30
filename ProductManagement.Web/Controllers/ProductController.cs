@@ -43,8 +43,8 @@ namespace ProductManagement.Web.Controllers
 
                 createProductViewModel.CraeatedBy= _userService.GetLoggedUserId();
                 _productService.CreateProduct(createProductViewModel);
-                TempData["Success"] = "Added Successfully!";
-                _log.LogTrace(DateTime.Now + "| Product " + createProductViewModel.Name + "created successfully");
+                TempData["Success"] = "Created Successfully!";
+                _log.LogInformation(DateTime.Now + "| Product :" + createProductViewModel.Name + "  created successfully");
                 ModelState.Clear();
                 return View("../Product/CreateProduct", new CreateProductViewModel());
             }
@@ -85,7 +85,7 @@ namespace ProductManagement.Web.Controllers
                 editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
                 _productService.UpdateProduct(editProductViewModel);
                 TempData["Success"] = "Updated Successfully!";
-                _log.LogTrace(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
+                _log.LogInformation(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
                 return View("../Product/CreateProduct", new EditProductViewModel());
             }
             catch (Exception ex)
@@ -105,7 +105,7 @@ namespace ProductManagement.Web.Controllers
                 _productService.Delete(id);
                 ProductViewModel productViewModel = GetProductPaginatedList();
                 TempData["Success"] = "Product deleted successfully!";
-               _log.LogTrace(DateTime.Now + "| Product id " + id  + "deleted successfully");
+               _log.LogInformation(DateTime.Now + "| Product id " + id  + "deleted successfully");
                 return View("../Product/ProductList", productViewModel);
             }
             catch (Exception ex)

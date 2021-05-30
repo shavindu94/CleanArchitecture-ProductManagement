@@ -111,3 +111,4 @@ E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManag
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Serilog.Settings.Configuration.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Serilog.Sinks.Console.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Serilog.Sinks.Debug.dll
+E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\Razor\Pages\Shared\_MessageView.cshtml.g.cs
