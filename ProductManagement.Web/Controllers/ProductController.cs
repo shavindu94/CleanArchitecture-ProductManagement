@@ -86,7 +86,8 @@ namespace ProductManagement.Web.Controllers
                 _productService.UpdateProduct(editProductViewModel);
                 TempData["Success"] = "Updated Successfully!";
                 _log.LogInformation(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
-                return View("../Product/CreateProduct", new EditProductViewModel());
+                ModelState.Clear();
+                return View("../Product/Edit", new EditProductViewModel());
             }
             catch (Exception ex)
             {
