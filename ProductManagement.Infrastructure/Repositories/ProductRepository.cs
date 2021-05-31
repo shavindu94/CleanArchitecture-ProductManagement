@@ -19,7 +19,7 @@ namespace ProductManagement.Infrastructure.Repositories
         public List<Product> GetFiletedList(string searchString = "", int pageNumber = 1, int pageSize = 10)
         {
             var list = _context.Products.Where(a => a.Name.Contains((searchString == "" || searchString == null) ? a.Name : searchString))
-                            .Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                          .OrderBy(x => x.ReOrderLevel).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
             return list;
         }
