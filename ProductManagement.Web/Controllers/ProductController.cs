@@ -99,12 +99,12 @@ namespace ProductManagement.Web.Controllers
 
         }
 
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {
                 _productService.Delete(id);
-                ProductViewModel productViewModel = GetProductPaginatedList();
+                ProductViewModel productViewModel = await GetProductPaginatedList();
                 TempData["Success"] = "Product deleted successfully!";
                _log.LogInformation(DateTime.Now + "| Product id " + id  + "deleted successfully");
                 return View("../Product/ProductList", productViewModel);
@@ -120,11 +120,11 @@ namespace ProductManagement.Web.Controllers
         }
 
 
-        public IActionResult ProductList(int page = 1, string searchString= "")
+        public async Task<IActionResult> ProductList(int page = 1, string searchString= "")
         {
             try
             {
-                ProductViewModel productViewModel = GetProductPaginatedList(page, searchString);
+                ProductViewModel productViewModel = await GetProductPaginatedList(page, searchString);
                 return View("../Product/ProductList", productViewModel);
             }
             catch (Exception ex)
@@ -142,9 +142,9 @@ namespace ProductManagement.Web.Controllers
             return View("../Product/CreateProduct", new CreateProductViewModel());
         }
 
-        private ProductViewModel GetProductPaginatedList(int page = 1, string searchString = "")
+        private async Task<ProductViewModel> GetProductPaginatedList(int page = 1, string searchString = "")
         {
-            var paginationObj = _productService.GetProducts(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
+            var paginationObj =  await _productService.GetProductsAsync(new Pagination() { PageNumber = page, PageSize = 10, SearchString = searchString });
 
             this.ViewBag.MaxPage = paginationObj.NumberOfpages;
             this.ViewBag.Page = page;

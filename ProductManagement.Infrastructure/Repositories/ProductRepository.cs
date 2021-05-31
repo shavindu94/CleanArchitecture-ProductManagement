@@ -23,5 +23,11 @@ namespace ProductManagement.Infrastructure.Repositories
 
             return list;
         }
+
+        public async Task<IEnumerable<Product>> GetFiletedListAsync(string searchString = "", int pageNumber = 1, int pageSize = 10)
+        {
+            return await Find(a => a.Name.Contains((searchString == "" || searchString == null) ? a.Name : searchString))
+                  .OrderBy(x => x.ReOrderLevel).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
     }
 }

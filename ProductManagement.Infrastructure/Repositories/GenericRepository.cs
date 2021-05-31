@@ -1,4 +1,5 @@
-﻿using ProductManagement.Domain.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductManagement.Domain.Interfaces;
 using ProductManagement.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -27,14 +28,14 @@ namespace ProductManagement.Infrastructure.Repositories
             _context.Set<T>().AddRange(entities);
         }
 
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public IQueryable<T> Find(Expression<Func<T, bool>> expression)
         {
-            return _context.Set<T>().Where(expression);
+            return _context.Set<T>().Where(expression).AsNoTracking();
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return _context.Set<T>().AsNoTracking();
         }
 
         public T GetById(Guid id)

@@ -3,7 +3,6 @@ E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManag
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.AssemblyInfoInputs.cache
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.AssemblyInfo.cs
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.csproj.CoreCompileInputs.cache
-E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.MvcApplicationPartsAssemblyInfo.cs
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.MvcApplicationPartsAssemblyInfo.cache
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.RazorAssemblyInfo.cache
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\obj\Debug\net5.0\ProductManagement.Web.RazorAssemblyInfo.cs

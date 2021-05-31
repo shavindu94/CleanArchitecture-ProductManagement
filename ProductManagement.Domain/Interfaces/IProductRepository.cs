@@ -10,5 +10,7 @@ namespace ProductManagement.Domain.Interfaces
     public interface IProductRepository:IGenericRepository<Product>
     {
         List<Product> GetFiletedList(string searchString = "", int pageNumber = 1, int pageSize = 10);
+
+        Task<IEnumerable<Product>> GetFiletedListAsync(string searchString = "", int pageNumber = 1, int pageSize = 10);
     }
 }

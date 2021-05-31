@@ -19,6 +19,7 @@ namespace ProductManagement.Application.Interfaces
 
         void Delete(Guid id);
 
-        Pagination GetProducts(Pagination paginationIn);
+        Task<Pagination> GetProductsAsync(Pagination paginationIn);
+
     }
 }
