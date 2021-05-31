@@ -10,5 +10,6 @@ namespace ProductManagement.Domain.Interfaces
     {
         IProductRepository Products { get; }
         int Complete();
+        Task<int> CompleteAsync();
     }
 }

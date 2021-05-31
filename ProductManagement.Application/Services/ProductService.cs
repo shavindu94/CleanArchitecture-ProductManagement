@@ -29,7 +29,7 @@ namespace ProductManagement.Application.Services
 
         public async Task<Pagination> GetProductsAsync(Pagination paginationIn)
         {
-           var list = await _unitOfWork.Products.GetFiletedListAsync(paginationIn.SearchString, paginationIn.PageNumber, paginationIn.PageSize);
+           var list = await _unitOfWork.Products.GetFilteredListAsync(paginationIn.SearchString, paginationIn.PageNumber, paginationIn.PageSize);
 
             Pagination pagination = new Pagination()
             {
@@ -58,9 +58,9 @@ namespace ProductManagement.Application.Services
         }
 
 
-        public EditProductViewModel GetById(Guid id)
+        public async Task<EditProductViewModel> GetById(Guid id)
         {
-            Product product = _unitOfWork.Products.GetById(id);
+            Product product = await _unitOfWork.Products.GetByIdAsync(id);
 
             if(product != null && product.Id !=Guid.Empty)
             {
@@ -76,24 +76,34 @@ namespace ProductManagement.Application.Services
             return new EditProductViewModel();
         }
 
-        public void UpdateProduct(EditProductViewModel editProductViewModel)
+        public async Task UpdateProduct(EditProductViewModel editProductViewModel)
         {
-            Product product = _unitOfWork.Products.GetById(editProductViewModel.Id);
 
-            product.Id = editProductViewModel.Id;
-            product.Name = editProductViewModel.Name;
-            product.UnitPrice = editProductViewModel.UnitPrice;
-            product.ReOrderLevel = editProductViewModel.ReOrderLevel;
-            product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
-            product.ModifiedUserId = editProductViewModel.CraeatedBy;
-            product.ModifiedDate = DateTime.Now;
+            Product product = await _unitOfWork.Products.GetByIdAsync(editProductViewModel.Id);
+
+            if (product != null && product.Id != Guid.Empty)
+            {
+                product.Id = editProductViewModel.Id;
+                product.Name = editProductViewModel.Name;
+                product.UnitPrice = editProductViewModel.UnitPrice;
+                product.ReOrderLevel = editProductViewModel.ReOrderLevel;
+                product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
+                product.ModifiedUserId = editProductViewModel.CraeatedBy;
+                product.ModifiedDate = DateTime.Now;
+
+                _unitOfWork.Products.Update(product);
+                await _unitOfWork.CompleteAsync();
+            }
+            else
+            {
+                
+            }
             
-            _unitOfWork.Complete();
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            Product product = _unitOfWork.Products.GetById(id);
+            Product product = await _unitOfWork.Products.GetByIdAsync(id);
             _unitOfWork.Products.Remove(product);
             _unitOfWork.Complete();
 

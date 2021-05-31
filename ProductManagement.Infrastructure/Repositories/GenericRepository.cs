@@ -38,11 +38,6 @@ namespace ProductManagement.Infrastructure.Repositories
             return _context.Set<T>().AsNoTracking();
         }
 
-        public T GetById(Guid id)
-        {
-            return _context.Set<T>().Find(id);
-        }
-
         public void Remove(T entity)
         {
             _context.Set<T>().Remove(entity);
@@ -56,6 +51,11 @@ namespace ProductManagement.Infrastructure.Repositories
         public int GetCount()
         {
             return _context.Set<T>().Count();
+        }
+
+        public void Update(T entity)
+        {
+            this._context.Set<T>().Update(entity);
         }
 
 

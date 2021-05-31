@@ -13,11 +13,12 @@ namespace ProductManagement.Application.Interfaces
         ProductViewModel GetProducts();
 
         void CreateProduct(CreateProductViewModel createProductViewModel);
-        EditProductViewModel GetById(Guid id);
 
-        void UpdateProduct(EditProductViewModel editProductViewModel);
+        Task<EditProductViewModel> GetById(Guid id);
 
-        void Delete(Guid id);
+        Task UpdateProduct(EditProductViewModel editProductViewModel);
+
+        Task Delete(Guid id);
 
         Task<Pagination> GetProductsAsync(Pagination paginationIn);
 

@@ -59,9 +59,9 @@ namespace ProductManagement.Web.Controllers
         }
 
 
-        public IActionResult Edit(Guid id)
+        public async Task<IActionResult> Edit(Guid id)
         {
-            EditProductViewModel editProductViewModel = _productService.GetById(id);
+            EditProductViewModel editProductViewModel = await _productService.GetById(id);
 
             if (editProductViewModel != null && editProductViewModel.Id != Guid.Empty)
             {
@@ -73,7 +73,7 @@ namespace ProductManagement.Web.Controllers
 
         }
 
-        public IActionResult EditSubmit(EditProductViewModel editProductViewModel)
+        public async Task<IActionResult> EditSubmit(EditProductViewModel editProductViewModel)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace ProductManagement.Web.Controllers
                 }
 
                 editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
-                _productService.UpdateProduct(editProductViewModel);
+                 await  _productService.UpdateProduct(editProductViewModel);
                 TempData["Success"] = "Updated Successfully!";
                 _log.LogInformation(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
                 ModelState.Clear();
@@ -103,7 +103,7 @@ namespace ProductManagement.Web.Controllers
         {
             try
             {
-                _productService.Delete(id);
+                await _productService.Delete(id);
                 ProductViewModel productViewModel = await GetProductPaginatedList();
                 TempData["Success"] = "Product deleted successfully!";
                _log.LogInformation(DateTime.Now + "| Product id " + id  + "deleted successfully");

@@ -9,7 +9,6 @@ namespace ProductManagement.Domain.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
-        T GetById(Guid id);
         IQueryable<T> GetAll();
         IQueryable<T> Find(Expression<Func<T, bool>> expression);
         void Add(T entity);
@@ -18,5 +17,6 @@ namespace ProductManagement.Domain.Interfaces
         void RemoveRange(IEnumerable<T> entities);
 
         int GetCount();
+        void Update(T entity);
     }
 }

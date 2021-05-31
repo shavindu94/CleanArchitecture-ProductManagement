@@ -16,7 +16,7 @@ namespace ProductManagement.Infrastructure.Repositories
         {
         }
 
-        public List<Product> GetFiletedList(string searchString = "", int pageNumber = 1, int pageSize = 10)
+        public List<Product> GetFilteredList(string searchString = "", int pageNumber = 1, int pageSize = 10)
         {
             var list = _context.Products.Where(a => a.Name.Contains((searchString == "" || searchString == null) ? a.Name : searchString))
                           .OrderBy(x => x.ReOrderLevel).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
@@ -24,10 +24,16 @@ namespace ProductManagement.Infrastructure.Repositories
             return list;
         }
 
-        public async Task<IEnumerable<Product>> GetFiletedListAsync(string searchString = "", int pageNumber = 1, int pageSize = 10)
+        public async Task<IEnumerable<Product>> GetFilteredListAsync(string searchString = "", int pageNumber = 1, int pageSize = 10)
         {
             return await Find(a => a.Name.Contains((searchString == "" || searchString == null) ? a.Name : searchString))
                   .OrderBy(x => x.ReOrderLevel).Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        }
+
+        public async Task<Product> GetByIdAsync(Guid id)
+        {
+            return await Find(a => a.Id.Equals(id))
+                .FirstOrDefaultAsync();
         }
     }
 }
