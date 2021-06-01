@@ -69,7 +69,8 @@ namespace ProductManagement.Application.Services
                     Name = product.Name,
                     UnitPrice = product.UnitPrice,
                     ReOrderLevel = product.ReOrderLevel,
-                    NumberOfUnitsAvailable = product.NumberOfUnitsAvailable
+                    NumberOfUnitsAvailable = product.NumberOfUnitsAvailable,
+                    RowVersion=product.RowVersion
                 };
 
             }
@@ -90,6 +91,7 @@ namespace ProductManagement.Application.Services
                 product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
                 product.ModifiedUserId = editProductViewModel.CraeatedBy;
                 product.ModifiedDate = DateTime.Now;
+                product.RowVersion = editProductViewModel.RowVersion;
 
                 _unitOfWork.Products.Update(product);
                 await _unitOfWork.CompleteAsync();

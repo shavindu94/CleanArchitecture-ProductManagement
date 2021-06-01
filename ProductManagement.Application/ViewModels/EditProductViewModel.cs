@@ -24,6 +24,8 @@ namespace ProductManagement.Application.ViewModels
         [Required]
         public decimal UnitPrice { get; set; }
 
+        public byte[] RowVersion { get; set; }
+
 
         public string CraeatedBy { get; set; }
     }
