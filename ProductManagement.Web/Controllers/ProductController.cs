@@ -72,14 +72,14 @@ namespace ProductManagement.Web.Controllers
                 string message = "Product not available";
                 _log.LogInformation(message + ":" + ex.ToString());
                 TempData["Warning"] = message;
-                return View("../Product/ProductList", _productService.GetProducts());
+                return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
                 string message = "Product update failed";
                 _log.LogError(message + ":" + ex.ToString());
                 TempData["Error"] = message;
-                return View("../Product/ProductList", _productService.GetProducts());
+                return View("../Product/ProductList", await GetProductPaginatedList());
             }
            
             
@@ -143,14 +143,14 @@ namespace ProductManagement.Web.Controllers
                 string message = "Product not available";
                 _log.LogInformation(message + ":" + ex.ToString());
                 TempData["Warning"] = message;
-                return View("../Product/ProductList", new ProductViewModel());
+                return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
                 string message = "Product delete failed";
                 _log.LogError(message + ":" + ex.ToString());
                 TempData["Error"] = message;
-                return View("../Product/ProductList", new ProductViewModel());
+                return View("../Product/ProductList", await GetProductPaginatedList());
             }
            
         }
