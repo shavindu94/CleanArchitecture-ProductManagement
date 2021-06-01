@@ -13,7 +13,6 @@ E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManag
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Humanizer.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 E:\git\C#\MyProjects\shavindu94\ProductManagement\ProductManagement\ProductManagement.Web\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll

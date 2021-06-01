@@ -44,7 +44,7 @@ namespace ProductManagement.Web
                     Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddDatabaseDeveloperPageExceptionFilter();
+            //services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
@@ -71,7 +71,7 @@ namespace ProductManagement.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseMigrationsEndPoint();
+                //app.UseMigrationsEndPoint();
             }
             else
             {

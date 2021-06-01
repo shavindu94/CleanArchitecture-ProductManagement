@@ -33,10 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "ProductManagement.Web/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "5.0.6",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.6",
           "Microsoft.AspNetCore.Identity.UI": "5.0.6",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.6",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.6",
           "ProductManagement.Infrastructure": "1.0.0",
           "ProductManagement.IoC": "1.0.0",
@@ -410,20 +407,6 @@
         }
       },
       "Microsoft.AspNetCore.DataProtection.Abstractions/2.2.0": {},
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/5.0.6": {
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.6"
-        },
-        "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.22305"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Server.Abstractions": "2.2.0",
@@ -3996,13 +3979,6 @@
       "sha512": "sha512-seANFXmp8mb5Y12m1ShiElJ3ZdOT3mBN3wA1GPhHJIvZ/BxOCPyqEOR+810OWsxEZwA5r5fDRNpG/CqiJmQnJg==",
       "path": "microsoft.aspnetcore.dataprotection.abstractions/2.2.0",
       "hashPath": "microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/5.0.6": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-CfbSbq3cyYpAzotftmFzjCBih5wczuxK7MRtZLA/i1TEs96/63cejPn0R2+zDmOp4BJg1lhitAh3hG1hCCgpmA==",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/5.0.6",
-      "hashPath": "microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.6.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Hosting.Abstractions/2.2.0": {
       "type": "package",

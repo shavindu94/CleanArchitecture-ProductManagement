@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "EZuc6vQqJ+il2glP8TvVllb8r+yr6KXSdn2sDx8WtLBjNyzV0CF9Wlhre5VNdlRUxdoNRzKgEplY2YDn2uyI7g==",
+  "dgSpecHash": "mgX1xnhwD7UtXaEIDHa1g2K1hy9D2hM6TnG3HHIaZJ0lPtn4JNfWJek8HFwE7qU4mnYUr0M8UEBWHHIjjQJpHw==",
   "success": true,
   "projectFilePath": "E:\\git\\C#\\MyProjects\\shavindu94\\ProductManagement\\ProductManagement\\ProductManagement.Web\\ProductManagement.Web.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,6 @@
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.6\\microsoft.aspnetcore.cryptography.keyderivation.5.0.6.nupkg.sha512",
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",
-    "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.6\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.6.nupkg.sha512",
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.hosting.server.abstractions\\2.2.0\\microsoft.aspnetcore.hosting.server.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\Shavindu\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.0\\microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
