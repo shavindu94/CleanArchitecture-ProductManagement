@@ -59,12 +59,7 @@
 {
     <script>
         function Search() {
-            debugger;
-            var searchVal = GetSearchVal();
-            $.ajax({
-                url: 'ProductList',
-                data: { searchString: searchVal }
-            }).done();
+           window.location.href = '@Url.Action("ProductList")?page=' + 1 + '&searchString=' + GetSearchVal();
         }
 
         function GetSearchVal() {
