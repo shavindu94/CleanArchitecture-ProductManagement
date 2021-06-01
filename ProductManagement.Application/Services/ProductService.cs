@@ -1,4 +1,5 @@
 ﻿using ProductManagement.Application.Common;
+using ProductManagement.Application.Common.Exceptions;
 using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
 using ProductManagement.Domain.Interfaces;
@@ -74,7 +75,10 @@ namespace ProductManagement.Application.Services
                 };
 
             }
-            return new EditProductViewModel();
+            else
+            {
+                throw new NotFoundException("Product not found Id :" + id.ToString());
+            }
         }
 
         public async Task UpdateProduct(EditProductViewModel editProductViewModel)
@@ -84,21 +88,28 @@ namespace ProductManagement.Application.Services
 
             if (product != null && product.Id != Guid.Empty)
             {
-                product.Id = editProductViewModel.Id;
-                product.Name = editProductViewModel.Name;
-                product.UnitPrice = editProductViewModel.UnitPrice;
-                product.ReOrderLevel = editProductViewModel.ReOrderLevel;
-                product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
-                product.ModifiedUserId = editProductViewModel.CraeatedBy;
-                product.ModifiedDate = DateTime.Now;
-                product.RowVersion = editProductViewModel.RowVersion;
+                if (product.RowVersion.SequenceEqual(editProductViewModel.RowVersion))
+                {
+                    product.Id = editProductViewModel.Id;
+                    product.Name = editProductViewModel.Name;
+                    product.UnitPrice = editProductViewModel.UnitPrice;
+                    product.ReOrderLevel = editProductViewModel.ReOrderLevel;
+                    product.NumberOfUnitsAvailable = editProductViewModel.NumberOfUnitsAvailable;
+                    product.ModifiedUserId = editProductViewModel.CraeatedBy;
+                    product.ModifiedDate = DateTime.Now;
+                    product.RowVersion = editProductViewModel.RowVersion;
 
-                _unitOfWork.Products.Update(product);
-                await _unitOfWork.CompleteAsync();
+                    _unitOfWork.Products.Update(product);
+                    await _unitOfWork.CompleteAsync();
+                }
+                else
+                {
+                    throw new ConcurrencyException(editProductViewModel.Name, editProductViewModel.Id.ToString());
+                }
             }
             else
             {
-                
+                throw new NotFoundException( editProductViewModel.Name, editProductViewModel.Id.ToString());
             }
             
         }
@@ -106,8 +117,16 @@ namespace ProductManagement.Application.Services
         public async Task Delete(Guid id)
         {
             Product product = await _unitOfWork.Products.GetByIdAsync(id);
-            _unitOfWork.Products.Remove(product);
-            _unitOfWork.Complete();
+
+            if (product != null && product.Id != Guid.Empty)
+            {
+                _unitOfWork.Products.Remove(product);
+                _unitOfWork.Complete();
+            }
+            else
+            {
+                throw new NotFoundException("Product not found Id :" + id.ToString());
+            }
 
         }
     }
