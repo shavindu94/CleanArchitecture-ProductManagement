@@ -42,14 +42,14 @@
 </table>
 @if (ViewBag.Page > 1)
 {
-    <a href="#" id="navPrevious" onclick="pageNavigate('Previous');return false; "
+    <a href="#" id="navPrevious" onclick="PageNavigate('Previous');return false; "
        class="btn btn-default">
         &laquo; Prev
     </a>
 }
 @if (ViewBag.Page < ViewBag.MaxPage)
 {
-    <a href="#" id="navNext" onclick="pageNavigate('Next');return false;"
+    <a href="#" id="navNext" onclick="PageNavigate('Next');return false;"
        class="btn btn-default">
         Next &raquo;
     </a>
@@ -59,27 +59,25 @@
 {
     <script>
         function Search() {
-           window.location.href = '@Url.Action("ProductList")?page=' + 1 + '&searchString=' + GetSearchVal();
+            Process(1);
         }
 
         function GetSearchVal() {
             return $("#txtSearch").val();
         }
 
-        function pageNavigate(navDirection) {
-            debugger;
-            var searchtext = GetSearchVal();
-            var page = 0;
-
+        function PageNavigate(navDirection) {
             if (navDirection == "Next") {
                 page= @(ViewBag.Page)+1;
             } else if (navDirection == "Previous") {
                 page = @(ViewBag.Page)-1;
             }
-            window.location.href = '@Url.Action("ProductList")?page=' + page + '&searchString=' + searchtext;
-
+            Process(page);
         }
 
+        function Process(page) {
+            window.location.href = '@Url.Action("ProductList")?page=' + page + '&searchString=' + GetSearchVal();
+        }
 
 
     </script>
