@@ -76,11 +76,7 @@ namespace ProductManagement.Web.Controllers
                 _messageService.SetErrorMessage(this, "Product Load failed", "Error", ex.ToString());
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
-           
-            
-
-            
-
+          
         }
 
         public async Task<IActionResult> EditSubmit(EditProductViewModel editProductViewModel)
