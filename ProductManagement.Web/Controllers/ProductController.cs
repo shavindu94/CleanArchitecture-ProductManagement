@@ -5,6 +5,7 @@ using ProductManagement.Application.Common;
 using ProductManagement.Application.Common.Exceptions;
 using ProductManagement.Application.Interfaces;
 using ProductManagement.Application.ViewModels;
+using ProductManagement.Web.Common.Services;
 using ProductManagement.Web.Identity;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,14 @@ namespace ProductManagement.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly ILogger<ProductController> _log;
         private readonly IUserService _userService;
-        public ProductController(IProductService productService , ILogger<ProductController> log, IUserService userService)
+        private readonly IMessageService _messageService;
+
+        public ProductController(IProductService productService , ILogger<ProductController> log, IUserService userService, IMessageService messageService)
         {
             _productService = productService;
-            _log = log;
             _userService = userService;
+            _messageService = messageService;
         }
         public IActionResult Index()
         {
@@ -44,16 +46,13 @@ namespace ProductManagement.Web.Controllers
 
                 createProductViewModel.CraeatedBy= _userService.GetLoggedUserId();
                 _productService.CreateProduct(createProductViewModel);
-                TempData["Success"] = "Created Successfully!";
-                _log.LogInformation(DateTime.Now + "| Product :" + createProductViewModel.Name + "  created successfully");
+                _messageService.SetMessage(this, "Created Successfully!","Success");
                 ModelState.Clear();
                 return View("../Product/CreateProduct", new CreateProductViewModel());
             }
             catch (Exception ex)
             {
-                string message = "Product Creation failed";
-                _log.LogError(message +":" + ex.ToString());
-                TempData["Error"] = message;
+                _messageService.SetErrorMessage(this, "Product Creation failed", "Error" ,ex.ToString());
                 return View("../Product/CreateProduct", createProductViewModel);
             }
           
@@ -69,16 +68,12 @@ namespace ProductManagement.Web.Controllers
             }
             catch (NotFoundException ex)
             {
-                string message = "Product not available";
-                _log.LogInformation(message + ":" + ex.ToString());
-                TempData["Warning"] = message;
+                _messageService.SetMessage(this, "Product not available", "Warning");
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
-                string message = "Product update failed";
-                _log.LogError(message + ":" + ex.ToString());
-                TempData["Error"] = message;
+                _messageService.SetErrorMessage(this, "Product Load failed", "Error", ex.ToString());
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
            
@@ -97,32 +92,26 @@ namespace ProductManagement.Web.Controllers
                     return View("../Product/Edit", editProductViewModel);
                 }
 
-                editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
+                 editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
                  await  _productService.UpdateProduct(editProductViewModel);
-                TempData["Success"] = "Updated Successfully!";
-                _log.LogInformation(DateTime.Now + "| Product " + editProductViewModel.Name + "updated successfully");
+                _messageService.SetMessage(this, "Product :" + editProductViewModel.Name +  " Updated Successfully!", "Success");
                 ModelState.Clear();
                 return View("../Product/Edit", new EditProductViewModel());
             }
             catch (NotFoundException ex)
             {
-                string message = "Product not available";
-                _log.LogInformation(message + ":" + ex.ToString());
-                TempData["Warning"] = message;
+                _messageService.SetMessage(this, "Product not available", "Warning");;
                 return View("../Product/Edit", editProductViewModel);
             }
             catch (ConcurrencyException ex)
             {
-                string message = "Product updated by another user please load the product again";
-                _log.LogInformation(message + ":" + ex.ToString());
-                TempData["Warning"] = message;
+                string message = "";
+                _messageService.SetMessage(this, "Product updated by another user please load the product again", "Warning"); ;
                 return View("../Product/Edit", editProductViewModel);
             }
             catch (Exception ex)
             {
-                string message = "Product update failed";
-                _log.LogError(message + ":" + ex.ToString());
-                TempData["Error"] = message;
+                _messageService.SetErrorMessage(this, "Product : " +editProductViewModel.Name +"  update failed", "Error", ex.ToString());
                 return View("../Product/Edit", editProductViewModel);
             }
 
@@ -134,22 +123,17 @@ namespace ProductManagement.Web.Controllers
             {
                 await _productService.Delete(id);
                 ProductViewModel productViewModel = await GetProductPaginatedList();
-                TempData["Success"] = "Product deleted successfully!";
-               _log.LogInformation(DateTime.Now + "| Product id " + id  + "deleted successfully");
+                _messageService.SetMessage(this, "Product Deleted Successfully!", "Success");
                 return View("../Product/ProductList", productViewModel);
             }
             catch (NotFoundException ex)
             {
-                string message = "Product not available";
-                _log.LogInformation(message + ":" + ex.ToString());
-                TempData["Warning"] = message;
+                _messageService.SetMessage(this, "Product not available", "Warning");
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
-                string message = "Product delete failed";
-                _log.LogError(message + ":" + ex.ToString());
-                TempData["Error"] = message;
+                _messageService.SetErrorMessage(this, "Product delete failed", "Error", ex.ToString());
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
            
@@ -181,10 +165,7 @@ namespace ProductManagement.Web.Controllers
             }
             catch (Exception ex)
             {
-
-                string message = "Product list load failed";
-                _log.LogError(message + ":" + ex.ToString());
-                TempData["Error"] = message;
+                _messageService.SetErrorMessage(this, "Product list load failed", "Error", ex.ToString());
                 return new ProductViewModel();
             }
            

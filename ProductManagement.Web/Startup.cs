@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using ProductManagement.Infrastructure.Data;
 using ProductManagement.Infrastructure.Identity.Data;
 using ProductManagement.IoC;
+using ProductManagement.Web.Common.Services;
 using ProductManagement.Web.Identity;
 using System;
 using System.Collections.Generic;
@@ -50,6 +51,7 @@ namespace ProductManagement.Web
             services.AddRazorPages();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IMessageService, MessageService>();
 
             RegisterServices(services);
 
