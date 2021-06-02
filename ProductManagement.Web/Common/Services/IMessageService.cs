@@ -8,8 +8,8 @@ namespace ProductManagement.Web.Common.Services
 {
     public interface IMessageService
     {
-        void SetMessage(Controller controller, string message, string type);
+        void SetMessage(Controller controller, string message, int messageType);
 
-        void SetErrorMessage(Controller controller, string message, string type, string exception);
+        void SetErrorMessage(Controller controller, string message, string exception);
     }
 }

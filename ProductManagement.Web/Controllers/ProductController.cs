@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static ProductManagement.Web.Common.Enums.MessageEnum;
 
 namespace ProductManagement.Web.Controllers
 {
@@ -46,13 +47,13 @@ namespace ProductManagement.Web.Controllers
 
                 createProductViewModel.CraeatedBy= _userService.GetLoggedUserId();
                 _productService.CreateProduct(createProductViewModel);
-                _messageService.SetMessage(this, "Created Successfully!","Success");
+                _messageService.SetMessage(this, "Created Successfully!", (int)MessageTypeEnum.Success);
                 ModelState.Clear();
                 return View("../Product/CreateProduct", new CreateProductViewModel());
             }
             catch (Exception ex)
             {
-                _messageService.SetErrorMessage(this, "Product Creation failed", "Error" ,ex.ToString());
+                _messageService.SetErrorMessage(this, "Product Creation failed",ex.ToString());
                 return View("../Product/CreateProduct", createProductViewModel);
             }
           
@@ -68,12 +69,12 @@ namespace ProductManagement.Web.Controllers
             }
             catch (NotFoundException ex)
             {
-                _messageService.SetMessage(this, "Product not available", "Warning");
+                _messageService.SetMessage(this, "Product not available", (int)MessageTypeEnum.Warning);
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
-                _messageService.SetErrorMessage(this, "Product Load failed", "Error", ex.ToString());
+                _messageService.SetErrorMessage(this, "Product Load failed", ex.ToString());
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
           
@@ -90,24 +91,24 @@ namespace ProductManagement.Web.Controllers
 
                  editProductViewModel.CraeatedBy = _userService.GetLoggedUserId();
                  await  _productService.UpdateProduct(editProductViewModel);
-                _messageService.SetMessage(this, "Product :" + editProductViewModel.Name +  " Updated Successfully!", "Success");
+                _messageService.SetMessage(this, "Product :" + editProductViewModel.Name +  " Updated Successfully!", (int)MessageTypeEnum.Success);
                 ModelState.Clear();
                 return View("../Product/Edit", new EditProductViewModel());
             }
             catch (NotFoundException ex)
             {
-                _messageService.SetMessage(this, "Product not available", "Warning");;
+                _messageService.SetMessage(this, "Product not available", (int)MessageTypeEnum.Warning);;
                 return View("../Product/Edit", editProductViewModel);
             }
             catch (ConcurrencyException ex)
             {
                 string message = "";
-                _messageService.SetMessage(this, "Product updated by another user please load the product again", "Warning"); ;
+                _messageService.SetMessage(this, "Product updated by another user please load the product again", (int)MessageTypeEnum.Warning); ;
                 return View("../Product/Edit", editProductViewModel);
             }
             catch (Exception ex)
             {
-                _messageService.SetErrorMessage(this, "Product : " +editProductViewModel.Name +"  update failed", "Error", ex.ToString());
+                _messageService.SetErrorMessage(this, "Product : " +editProductViewModel.Name +"  update failed", ex.ToString());
                 return View("../Product/Edit", editProductViewModel);
             }
 
@@ -119,17 +120,17 @@ namespace ProductManagement.Web.Controllers
             {
                 await _productService.Delete(id);
                 ProductViewModel productViewModel = await GetProductPaginatedList();
-                _messageService.SetMessage(this, "Product Deleted Successfully!", "Success");
+                _messageService.SetMessage(this, "Product Deleted Successfully!", (int)MessageTypeEnum.Success);
                 return View("../Product/ProductList", productViewModel);
             }
             catch (NotFoundException ex)
             {
-                _messageService.SetMessage(this, "Product not available", "Warning");
+                _messageService.SetMessage(this, "Product not available", (int)MessageTypeEnum.Warning);
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
             catch (Exception ex)
             {
-                _messageService.SetErrorMessage(this, "Product delete failed", "Error", ex.ToString());
+                _messageService.SetErrorMessage(this, "Product delete failed", ex.ToString());
                 return View("../Product/ProductList", await GetProductPaginatedList());
             }
            
@@ -161,7 +162,7 @@ namespace ProductManagement.Web.Controllers
             }
             catch (Exception ex)
             {
-                _messageService.SetErrorMessage(this, "Product list load failed", "Error", ex.ToString());
+                _messageService.SetErrorMessage(this, "Product list load failed", ex.ToString());
                 return new ProductViewModel();
             }
            

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static ProductManagement.Web.Common.Enums.MessageEnum;
 
 namespace ProductManagement.Web.Common.Services
 {
@@ -17,19 +18,25 @@ namespace ProductManagement.Web.Common.Services
         }
 
 
-        public void SetMessage(Controller controller ,string message ,string type)
+        public void SetMessage(Controller controller ,string message , int messageType)
         {
-            string logMessage = "";
-            controller.TempData[type] = message;
-            logMessage = message;
-            _log.LogInformation(logMessage);
+            if(messageType == (int)MessageTypeEnum.Success)
+            {
+                controller.TempData["Success"] = message;
+            }
+            else if(messageType == (int)MessageTypeEnum.Warning)
+            {
+                controller.TempData["Warning"] = message;
+            }
+
+            _log.LogInformation(message);
 
         }
 
-        public void SetErrorMessage(Controller controller, string message, string type , string exception)
+        public void SetErrorMessage(Controller controller, string message, string exception)
         {
             string logMessage = "";
-            controller.TempData[type] = message;
+            controller.TempData["Error"] = message;
             logMessage = message + "--- Exception : " + exception;
            _log.LogError(logMessage);
 
